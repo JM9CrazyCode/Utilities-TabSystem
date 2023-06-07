@@ -1,79 +1,77 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Assertions;
+using UnityEngine.Serialization;
 
-public class TabGroup : MonoBehaviour
+namespace JM9CrazyCode.TapSystem
 {
-    public List<TabButton> tabButtons;
-    public Sprite tabIdle;
-    public Sprite tabHover;
-    public Sprite tabActive;
-    public TabButton selectedTab;
-    public List<GameObject> objectsToSwap;
-    public void Subscribe(TabButton tabButton)
+    public class TabGroup : MonoBehaviour
     {
-        if(tabButtons == null)
-        {
-            tabButtons = new List<TabButton>();
-        }
-        tabButtons.Add(tabButton);
-    }
-    public void OnTabEnter(TabButton tabButton)
-    {
-        ResetTabs();
-        if(selectedTab == null || tabButton != selectedTab)
-        {
-        tabButton.background.sprite = tabHover;
-        }
-    }
-    public void OnTabExit(TabButton tabButton)
-    { 
-        ResetTabs();
-    }
-    public void OnTabSelected(TabButton tabButton)
-    {
-        if(selectedTab != null)
-        {
-            selectedTab.Deselect();
-        }
-        selectedTab = tabButton;
-        selectedTab.Select();
-        ResetTabs();
-        tabButton.background.sprite = tabActive;
-        int index = tabButton.transform.GetSiblingIndex();
-        for (int i = 0; i < objectsToSwap.Count; i++)
-        {
-            if(i == index)
-            {
-                objectsToSwap[i].SetActive(true);
-            }
-            else
-            {
-                objectsToSwap[i].SetActive(false);
-            }
-        }
-    }
-    public void ResetTabs()
-    {
-        foreach(TabButton btns in tabButtons)
-        {
-            if(selectedTab != null && btns == selectedTab)
-            {
-                continue;
-            }
-            btns.background.sprite = tabIdle;
-        }
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+        public List<TabButton> tabButtons;
+        public TapGroupConfig tapGroupConfig;
+        public TabButton selectedTab;
+        public List<GameObject> toggleObjects;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Start()
+        {
+            Assert.IsNotNull(tapGroupConfig);
+            Assert.IsNotNull(tabButtons);
+            foreach (var btn in tabButtons)
+            {
+                btn.Init(this, tapGroupConfig.tabIdle, tapGroupConfig.tabActive, tapGroupConfig.tabHover);
+            }
+        }
+
+
+        public void OnTabEnter(TabButton tabButton)
+        {
+            ResetTabs();
+            if (selectedTab == null || tabButton != selectedTab)
+            {
+                tabButton.SetSprite(TapButtonState.Hover);
+            }
+        }
+
+        public void OnTabExit(TabButton tabButton)
+        {
+            ResetTabs();
+        }
+
+        public void OnTabSelected(TabButton tabButton)
+        {
+            if (selectedTab != null)
+            {
+                selectedTab.Deselect();
+            }
+
+            selectedTab = tabButton;
+            selectedTab.Select();
+            ResetTabs();
+            tabButton.SetSprite(TapButtonState.Active);
+            int index = tabButton.transform.GetSiblingIndex();
+            for (int i = 0; i < toggleObjects.Count; i++)
+            {
+                if (i == index)
+                {
+                    toggleObjects[i].SetActive(true);
+                }
+                else
+                {
+                    toggleObjects[i].SetActive(false);
+                }
+            }
+        }
+
+        public void ResetTabs()
+        {
+            foreach (TabButton btns in tabButtons)
+            {
+                if (selectedTab != null && btns == selectedTab)
+                    continue;
+
+                btns.SetSprite(TapButtonState.Idle);
+            }
+        }
     }
 }
