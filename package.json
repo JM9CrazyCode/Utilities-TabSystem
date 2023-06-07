@@ -1,0 +1,18 @@
+{
+  "name": "com.jm9crazycode.tapsystem",
+  "version": "0.0.1",
+  "displayName": "JM9CrazyCode Tap System",
+  "description": "JM9CrazyCode Tap System",
+  "unity": "2021.3","2022.3"
+  "documentationUrl": "",
+  "changelogUrl": "",
+  "licensesUrl": "",
+  "dependencies": {
+ },
+ "keywords": [
+    "Utilites"
+  ],
+  "author": {
+    "name": "JM9CrazyCode"
+  }
+}
