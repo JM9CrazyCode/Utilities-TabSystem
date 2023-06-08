@@ -1,26 +1,37 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Serialization;
 
-namespace JM9CrazyCode.TapSystem
+namespace JM9CrazyCode.TabSystem
 {
     public class TabGroup : MonoBehaviour
     {
         public List<TabButton> tabButtons;
-        public TapGroupConfig tapGroupConfig;
+        [FormerlySerializedAs("tapGroupConfig")] public TabGroupConfig tabGroupConfig;
         public TabButton selectedTab;
         public List<GameObject> toggleObjects;
 
         private void Start()
         {
-            Assert.IsNotNull(tapGroupConfig);
+            Assert.IsNotNull(tabGroupConfig);
             Assert.IsNotNull(tabButtons);
             foreach (var btn in tabButtons)
             {
-                btn.Init(this, tapGroupConfig.tabIdle, tapGroupConfig.tabActive, tapGroupConfig.tabHover);
+                btn.Init(this, tabGroupConfig.tabIdle, tabGroupConfig.tabActive, tabGroupConfig.tabHover);
             }
+        }
+
+        public void GetTapButtonsFromChild()
+        {
+            tabButtons = GetComponentsInChildren<TabButton>(true).ToList();
+        }
+
+        public void ClearSubscribedTabButtons()
+        {
+            tabButtons = new List<TabButton>();
         }
         //TODO Pending One click find tabButton Function from a transform(?)
 
@@ -30,7 +41,7 @@ namespace JM9CrazyCode.TapSystem
             ResetTabs();
             if (selectedTab == null || tabButton != selectedTab)
             {
-                tabButton.SetSprite(TapButtonState.Hover);
+                tabButton.SetSprite(TabButtonState.Hover);
             }
         }
 
@@ -49,7 +60,7 @@ namespace JM9CrazyCode.TapSystem
             selectedTab = tabButton;
             selectedTab.Select();
             ResetTabs();
-            tabButton.SetSprite(TapButtonState.Active);
+            tabButton.SetSprite(TabButtonState.Active);
             int index = tabButton.transform.GetSiblingIndex();
             for (int i = 0; i < toggleObjects.Count; i++)
             {
@@ -71,7 +82,7 @@ namespace JM9CrazyCode.TapSystem
                 if (selectedTab != null && btns == selectedTab)
                     continue;
 
-                btns.SetSprite(TapButtonState.Idle);
+                btns.SetSprite(TabButtonState.Idle);
             }
         }
     }

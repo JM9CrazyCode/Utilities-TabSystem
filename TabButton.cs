@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace JM9CrazyCode.TapSystem
+namespace JM9CrazyCode.TabSystem
 {
     [RequireComponent(typeof(Image))]
     public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
@@ -26,21 +26,21 @@ namespace JM9CrazyCode.TapSystem
             m_Hover = hover;
         }
 
-        public void SetSprite(TapButtonState tapButtonState)
+        public void SetSprite(TabButtonState tabButtonState)
         {
-            switch (tapButtonState)
+            switch (tabButtonState)
             {
-                case TapButtonState.Idle:
+                case TabButtonState.Idle:
                     background.sprite = m_Idle;
                     break;
-                case TapButtonState.Active:
+                case TabButtonState.Active:
                     background.sprite = m_Active;
                     break;
-                case TapButtonState.Hover:
+                case TabButtonState.Hover:
                     background.sprite = m_Hover;
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(tapButtonState), tapButtonState, null);
+                    throw new ArgumentOutOfRangeException(nameof(tabButtonState), tabButtonState, null);
             }
         }
 

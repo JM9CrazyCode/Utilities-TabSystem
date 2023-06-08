@@ -1,6 +1,6 @@
-﻿namespace JM9CrazyCode.TapSystem
+﻿namespace JM9CrazyCode.TabSystem
 {
-    public enum TapButtonState
+    public enum TabButtonState
     {
         Idle,
         Active,

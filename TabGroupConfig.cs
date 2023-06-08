@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
-namespace JM9CrazyCode.TapSystem
+namespace JM9CrazyCode.TabSystem
 {
     [CreateAssetMenu(menuName = "JM9CrazyCode/TapSystem/Create TapGroupConfig", fileName = "TapGroupConfig", order = 0)]
-    public class TapGroupConfig : ScriptableObject
+    public class TabGroupConfig : ScriptableObject
     {
         public Sprite tabIdle;
         public Sprite tabHover;
