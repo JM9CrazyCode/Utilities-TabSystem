@@ -1,8 +1,8 @@
 {
-  "name": "com.jm9crazycode.tapsystem",
+  "name": "com.jm9crazycode.tabsystem",
   "version": "0.0.1",
-  "displayName": "JM9CrazyCode Tap System",
-  "description": "JM9CrazyCode Tap System",
+  "displayName": "JM9CrazyCode Tab System",
+  "description": "JM9CrazyCode Tab System",
   "unity": "2021.3","2022.3"
   "documentationUrl": "",
   "changelogUrl": "",
