@@ -2,7 +2,7 @@
 
 namespace JM9CrazyCode.TabSystem
 {
-    [CreateAssetMenu(menuName = "JM9CrazyCode/TapSystem/Create TapGroupConfig", fileName = "TapGroupConfig", order = 0)]
+    [CreateAssetMenu(menuName = "JM9CrazyCode/TapSystem/Create TabGroupConfig", fileName = "TabGroupConfig", order = 0)]
     public class TabGroupConfig : ScriptableObject
     {
         public Sprite tabIdle;

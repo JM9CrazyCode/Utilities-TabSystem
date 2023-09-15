@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d62fea73e3ab4f73b439538c58188abd, type: 3}
-  m_Name: TapGroupConfig1
+  m_Name: TabGroupConfig1
   m_EditorClassIdentifier: 
   tabIdle: {fileID: 0}
   tabHover: {fileID: 0}
